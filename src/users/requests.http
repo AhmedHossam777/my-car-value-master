@@ -1,0 +1,18 @@
+# Create new user
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "ahmed@gmail.com",
+  "password": "123456"
+}
+
+
+# Get All users
+
+GET http://localhost:5000/auth/
+Content-Type: application/json
+
+{
+
+}
