@@ -42,12 +42,11 @@ Content-Type: application/json
 {}
 
 ### update user
-PATCH  http://localhost:3000/auth/20
+PATCH  http://localhost:3000/auth/12
 Content-Type: application/json
 
 {
-  "email": "dada@gmail.com",
-  "password": "123"
+  "email": "dada@gmail.com"
 }
 
 
