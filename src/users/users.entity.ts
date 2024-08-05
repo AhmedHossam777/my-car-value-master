@@ -1,36 +1,41 @@
 import { log } from 'console';
 import {
-  AfterInsert,
-  AfterRemove,
-  AfterUpdate,
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
+	AfterInsert,
+	AfterRemove,
+	AfterUpdate,
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	OneToMany,
 } from 'typeorm';
+import { Report } from '../reports/reports.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-  @Column()
-  email: string;
+	@Column()
+	email: string;
 
-  @Column()
-  password: string;
+	@Column()
+	password: string;
 
-  @AfterInsert()
-  logInsert() {
-    log(`new user added with id: ${this.id}`);
-  }
+	@OneToMany(() => Report, (report) => report.user)
+	reports: Report[];
 
-  @AfterUpdate()
-  logUpdate() {
-    log(`user with ${this.id} id has been updated`);
-  }
+	@AfterInsert()
+	logInsert() {
+		log(`new user added with id: ${this.id}`);
+	}
 
-  @AfterRemove()
-  logDelete() {
-    log(`user with ${this.id} id has been deleted`);
-  }
+	@AfterUpdate()
+	logUpdate() {
+		log(`user with ${this.id} id has been updated`);
+	}
+
+	@AfterRemove()
+	logDelete() {
+		log(`user with ${this.id} id has been deleted`);
+	}
 }
