@@ -13,19 +13,19 @@ export class UsersService {
 		return await this.repo.save(user);
 	}
 
-	async findOne(id: number) {
+	async findOne(id: string) {
 		if (!id) {
 			throw new NotFoundException('user not found');
 		}
-		return await this.repo.findOneBy({ id });
+		return await this.repo.findOneBy({ id: parseInt(id) });
 	}
 
 	async find(email: string) {
 		return await this.repo.find({ where: { email } });
 	}
 
-	async update(id: number, attrs: Partial<User>) {
-		const user = await this.repo.findOneBy({ id });
+	async update(id: string, attrs: Partial<User>) {
+		const user = await this.repo.findOneBy({ id: parseInt(id) });
 		if (!user) {
 			throw new NotFoundException('user not found');
 		}
@@ -35,8 +35,8 @@ export class UsersService {
 		return this.repo.save(user);
 	}
 
-	async remove(id: number) {
-		const user = await this.repo.findOneBy({ id });
+	async remove(id: string) {
+		const user = await this.repo.findOneBy({ id: parseInt(id) });
 		if (!user) {
 			throw new NotFoundException('user not found');
 		}
