@@ -25,7 +25,7 @@ export class ReportsController {
 
 	@Get('')
 	createEstimate(@Query() query: GetEstimateDto) {
-		console.log(query);
+		return this.reportsService.createEstimate(query);
 	}
 
 	@Post('')
